@@ -27,6 +27,12 @@
                 </button>
             </div>
         </div>
+        <div class="w-full bg-gray-100 h-96 grid grid-cols-2 gap-20 pt-20">
+            <div class="flex justify-end items-center">
+                <div class="w-80 h-60 bg-red-500 rounded-xl"></div>
+            </div>
+            <div>skdjfg</div>
+        </div>
     </div>
 </template>
 
