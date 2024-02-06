@@ -31,7 +31,9 @@
         <section id="content" class="mt-20 text-gray-800 z-0">
             <div class="w-full bg-gray-100 h-96 grid grid-cols-2 gap-20">
                 <div class="flex justify-end items-center">
-                    <div class="w-8/12 h-80 bg-blue-800 rounded-xl"></div>
+                    <div class="w-8/12 h-80 rounded-xl overflow-hidden">
+                        <img class="object-cover w-full h-full" src="https://picsum.photos/400/300">
+                    </div>
                 </div>
                 <div class="flex flex-col justify-center items-center w-8/12">
                     <h1 class="text-4xl font-bold text-center text-blue-800">
