@@ -9,7 +9,7 @@
                 </div>
                 <div class="flex flex-col justify-center items-center w-8/12">
                     <h1 class="text-4xl font-bold text-center text-blue-800">
-                        ร่วมเป็นส่วนหนึ่งกับเราและพัฒนาองค์กรไปด้วยกัน</h1>
+                        มาร่วมเป็นส่วนหนึ่งกับเราและพัฒนาองค์กรไปด้วยกัน</h1>
                     <p class="mt-4">สวัสดิการและสิทธิประโยชน์ พนักงานมหาวิทยาลัยศิลปากร</p>
                     <p>ประกันชีวิตและสุขภาพกลุ่ม สิทธิประโยชน์และสวัสดิการ </p>
                     <button
@@ -130,7 +130,7 @@
                     <img class="object-cover w-full h-full" src="https://picsum.photos/800/300">
                 </div>
             </div>
-            
+
         </div>
     </Layout>
 </template>
