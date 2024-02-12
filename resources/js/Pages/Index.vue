@@ -1,13 +1,14 @@
 <template>
     <Layout>
         <div>
-            <div class="w-full bg-gray-100 h-96 grid grid-cols-2 gap-20">
+            <div
+                class="w-full bg-gray-100 py-10 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20 pl-8 pr-8 md:pl-40 md:pr-40">
                 <div class="flex justify-end items-center">
-                    <div class="w-8/12 h-80 rounded-xl overflow-hidden">
+                    <div class="w-full h-80 rounded-xl overflow-hidden">
                         <img class="object-cover w-full h-full" src="https://picsum.photos/400/300">
                     </div>
                 </div>
-                <div class="flex flex-col justify-center items-center w-8/12">
+                <div class="flex flex-col justify-center items-center">
                     <h1 class="text-4xl font-bold text-center text-blue-800">
                         ร่วมเป็นส่วนหนึ่งกับเราและพัฒนาองค์กรไปด้วยกัน</h1>
                     <p class="mt-4">สวัสดิการและสิทธิประโยชน์ พนักงานมหาวิทยาลัยศิลปากร</p>
@@ -27,9 +28,9 @@
                     </button>
                 </div>
             </div>
-            <div class="px-20 py-4">
+            <div class="px-4 md:px-10 lg:px-20 py-4">
                 <div id="tab" class="w-full">
-                    <div class="w-1/4">
+                    <div class="w-full md:w-1/2 lg:w-1/2 xl:1/4">
                         <div class="tabs tabs-bordered tabs-lg" role="tablist">
                             <input v-model="typeTap" :checked="typeTap==='academic'"
                                    :class="typeTap==='academic' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
@@ -46,8 +47,8 @@
                                    type="radio" value="support"/>
                         </div>
                     </div>
-                    <div class="w-8/12 mt-4">
-                        <div class="tabs tabs-bordered" role="tablist">
+                    <div class="w-full lg:w-10/12 xl:w-8/12 mt-4">
+                        <div class="tabs tabs-bordered flex flex-wrap" role="tablist">
                             <input v-model="stateTap" :checked="stateTap==='apply'"
                                    :class="stateTap==='apply' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
                                    aria-label="รับสมัครงาน"
@@ -75,8 +76,9 @@
                                    type="radio" value="pass"/>
                         </div>
                     </div>
+
                 </div>
-                <div id="table" class="mt-4">
+                <div id="table" class="mt-4 overflow-x-scroll">
                     <table class="table table-zebra">
                         <!-- head -->
                         <thead>
@@ -125,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div class="px-20 py-4">
+            <div class="px-4 md:px-10 lg:px-20 py-4">
                 <div class="w-full h-80">
                     <img class="object-cover w-full h-full" src="https://picsum.photos/800/300">
                 </div>

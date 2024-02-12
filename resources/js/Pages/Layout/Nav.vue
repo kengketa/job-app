@@ -1,6 +1,26 @@
 <template>
+    <section
+        class="flex md:hidden w-full h-20 bg-blue-800 fixed top-0 text-white py-2 px-4 justify-between gap-4 text-xl items-center z-30">
+        <div class="flex gap-2 items-center">
+            <div>logo</div>
+            <div>name</div>
+        </div>
+        <div class="dropdown dropdown-end">
+            <div class="border border-white p-2 rounded-md" role="button" tabindex="0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <ul class="dropdown-content z-[1] menu p-2 shadow bg-blue-700 rounded-box w-52" tabindex="0">
+                <li><a>Item 1</a></li>
+                <li><a>Item 2</a></li>
+            </ul>
+        </div>
+    </section>
     <section id="nav"
-             class="w-full h-20 bg-blue-800 fixed top-0 text-white py-4 px-4 flex justify-evenly gap-4 text-xl items-center z-30">
+             class="hidden md:flex w-full h-20 bg-blue-800 fixed top-0 text-white py-4 px-4 justify-evenly gap-4 text-xl items-center z-30">
         <div class="flex gap-2">
             <div>logo</div>
             <div>name</div>
