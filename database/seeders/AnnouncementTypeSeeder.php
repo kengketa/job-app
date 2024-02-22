@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\AnnouncementType;
 use Illuminate\Database\Seeder;
+use App\Models\AnnouncementType;
 
 class AnnouncementTypeSeeder extends Seeder
 {
@@ -15,6 +15,7 @@ class AnnouncementTypeSeeder extends Seeder
         AnnouncementType::factory()->create([
             'name' => 'สายวิชาการ'
         ]);
+
         AnnouncementType::factory()->create([
             'name' => 'สายสนับสนุน'
         ]);
