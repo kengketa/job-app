@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
     });
 });
+
+
+Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+

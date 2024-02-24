@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Announcement extends Model
 {
@@ -34,4 +35,17 @@ class Announcement extends Model
     {
         return $this->belongsTo(AnnouncementCategory::class, 'category_id');
     }
+
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        if (isset($filters['category_id']) && $filters['category_id'] != null) {
+            $query->where('category_id', $filters['category_id']);
+        }
+        if (isset($filters['type_id']) && $filters['type_id'] != null) {
+            $query->where('type_id', $filters['type_id']);
+        }
+    }
+
+
 }
