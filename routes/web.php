@@ -38,3 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
 
+Route::get('/get-all-announcements-type', [AnnouncementController::class, 'getAllAnnouncementTypes'])->name('announcements.get_all_announcement_types');
+
+Route::get('/get-all-announcements-categories', [AnnouncementController::class, 'getAllAnnouncementCategories'])->name('announcements.get_all_announcement_categories');
+

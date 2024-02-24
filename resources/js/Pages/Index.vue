@@ -32,31 +32,35 @@
                 <div id="tab" class="w-full">
                     <div class="w-full md:w-1/2 lg:w-1/2 xl:1/4">
                         <div class="tabs tabs-bordered tabs-lg" role="tablist">
-                            <input v-model="typeTap" :checked="typeTap==='academic'"
-                                   :class="typeTap==='academic' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
-                                   aria-label="สายวิชาการ"
+                            <input v-for="(type,index) in allTypes"
+                                   :key="index"
+                                   v-model="typeId"
+                                   :aria-label="type.name"
+                                   :class="type.id === typeId ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
+                                   :value="type.id"
                                    class="tab font-bold rounded-md"
                                    name="type_tab"
-                                   role="tab"
-                                   type="radio" value="academic"/>
-                            <input v-model="typeTap" :checked="typeTap==='support'"
+                                   role="tab" type="radio"/>
+                                   
+                            <!-- <input v-model="typeTap" :checked="typeTap==='support'"
                                    :class="typeTap==='support' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
                                    aria-label="สายสนับสนุน"
                                    class="tab font-bold rounded-md" name="type_tab"
                                    role="tab"
-                                   type="radio" value="support"/>
+                                   type="radio" value="support"/> -->
                         </div>
                     </div>
                     <div class="w-full lg:w-10/12 xl:w-8/12 mt-4">
                         <div class="tabs tabs-bordered flex flex-wrap" role="tablist">
-                            <input v-model="stateTap" :checked="stateTap==='apply'"
-                                   :class="stateTap==='apply' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
-                                   aria-label="รับสมัครงาน"
+                            <input v-for="(category,index) in allCategories" :key="index" v-model="categoryId"
+                                   :aria-label="category.name"
+                                   :class="category.id===categoryId ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
+                                   :value="category.id"
                                    class="tab font-bold rounded-md"
                                    name="state_tab"
-                                   role="tab"
-                                   type="radio" value="apply"/>
-                            <input v-model="stateTap" :checked="stateTap==='exam'"
+                                   role="tab" type="radio"/>
+
+                            <!-- <input v-model="stateTap" :checked="stateTap==='exam'"
                                    :class="stateTap==='exam' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
                                    aria-label="รายชื่อผู้มีสิทธิ์สอบข้อเขียน"
                                    class="tab font-bold rounded-md" name="state_tab"
@@ -73,7 +77,7 @@
                                    aria-label="รายชื่อผู้ที่ผ่านการสอบคัดเลือก"
                                    class="tab font-bold rounded-md" name="state_tab"
                                    role="tab"
-                                   type="radio" value="pass"/>
+                                   type="radio" value="pass"/> -->
                         </div>
                     </div>
 
@@ -95,17 +99,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="number in 10" :key="number">
-                            <th>{{ number }}</th>
-                            <td>
-                                ขยายเวลารับสมัครสอบคัดเลือกบุคคล เพื่อบรรจุเป็นพนักงานมหาวิทยาลัย ตำแหน่งอาจารย์
-                                (สาขาวิชาการศึกษาปฐมวัย)
-                            </td>
-                            <td>อาจารย์ (คณะศึกษาศาสตร์)</td>
-                            <td>ปริญญาเอก</td>
-                            <td>พนักงานประจำ</td>
-                            <td>1</td>
-                            <td>15 ม.ค. 2567 - 31 มี.ค. 2567</td>
+                        <tr v-for="(announcement,index) in announcements" :key="index">
+                            <th>{{index+1}}</th>
+                            <td>{{announcement.title}}</td>
+                            <td>{{announcement.position}}</td>
+                            <td>{{announcement.degree}}</td>
+                            <td>{{currentTypeTabName}}</td>
+                            <td>{{announcement.open_position}}</td>
+                            <td>{{announcement.start_date}} - {{announcement.end_date}}</td>
                             <td>pdf</td>
                             <td>
                                 <button
@@ -139,6 +140,7 @@
 
 <script>
 import Layout from "@/Pages/Layout/Layout.vue";
+import axios from 'axios';
 
 export default {
     name: "Index",
@@ -146,10 +148,79 @@ export default {
     data() {
         return {
             typeTap: 'academic',
-            stateTap: 'apply'
+            stateTap: 'apply',
+            typeId:1,
+            categoryId:1,
+            announcements: [],
+            currentPage: 1,
+            allTypes: [],
+            allCategories: [],
         };
     },
-    watch: {}
+    async mounted() {
+        const promises = [
+            this.getAllTypes(),
+            this.getAllCategories(),
+            this.loadAnnouncements()
+        ];
+        const [allTypes, allCategories, announcements] = await Promise.all(promises);
+        this.allTypes = allTypes;
+        this.allCategories = allCategories;
+        this.announcements = announcements;
+     
+        // console.log('-----------------');
+        // console.log(this.announcements);
+        // console.log('-----------------');
+
+    },
+
+    methods: {
+        async getAllTypes(){
+            const res = await axios.get(this.route('announcements.get_all_announcement_types'));
+            return res.data
+        },
+
+        async getAllCategories(){
+            const res = await axios.get(this.route('announcements.get_all_announcement_categories'));
+            return res.data
+        },
+
+        async loadAnnouncements(){
+
+            const res = await axios.get(this.route('announcements.index',{
+            type_id: this.typeId,
+            category_id: this.categoryId
+            }));                 
+
+            return res.data.data;
+        }
+
+    },
+
+    watch: {
+        async typeId() {
+            this.announcements = await this.loadAnnouncements(); 
+        // console.log('-----------------');
+        // console.log(this.typeId);
+        // console.log('-----------------');
+        },
+        async categoryId() {
+            this.announcements = await this.loadAnnouncements(); 
+        // console.log('-----------------');
+        // console.log(this.categoryId);
+        // console.log('-----------------');
+        },
+ 
+    },
+
+     computed: {
+        currentTypeTabName() {
+            const tab = this.allTypes.find(t => {
+                return t.id === this.typeId
+            });
+            return tab.name;
+        }
+        }
 };
 </script>
 

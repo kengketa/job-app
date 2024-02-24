@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Announcement;
+use App\Models\AnnouncementCategory;
+use App\Models\AnnouncementType;
 
 class AnnouncementController extends Controller
 {
@@ -21,6 +23,19 @@ class AnnouncementController extends Controller
 
         //dd($announcements);
     }
+
+    public function getAllAnnouncementTypes()
+    {
+        $allAnnouncementTypes = AnnouncementType::all();
+        return response()->json($allAnnouncementTypes);
+    }
+
+    public function getAllAnnouncementCategories()
+    {
+        $allAnnouncementCategories = AnnouncementCategory::all();
+        return response()->json($allAnnouncementCategories);
+    }
+
 
 
 
