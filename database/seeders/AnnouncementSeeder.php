@@ -4,16 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Announcements;
+use App\Models\Announcement;
 
-class AnnouncementsSeeder extends Seeder
+class AnnouncementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Announcements::factory()->count(100)->create();
+        Announcement::factory()->count(100)->create();
 
     }
 }
