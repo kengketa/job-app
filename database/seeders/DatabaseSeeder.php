@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AnnouncementTypeSeeder::class);
         $this->call(AnnouncementCategorySeeder::class);
+        $this->call(AnnouncementsSeeder::class);
     }
 }
