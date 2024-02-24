@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('title');
             $table->text('position');
             $table->string('degree');
-            $table->string('employment_type');
+           
             $table->unsignedInteger('open_position');
             $table->date('start_date');
             $table->date('end_date')->nullable();

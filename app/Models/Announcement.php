@@ -16,7 +16,7 @@ class Announcement extends Model
         'title',
         'position',
         'degree',
-        'employment_type',
+      
         'open_position',
         'start_date',
         'end_date',
