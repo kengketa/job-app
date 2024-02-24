@@ -10,7 +10,7 @@ use App\Models\AnnouncementCategory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Announcements>
  */
-class AnnouncementsFactory extends Factory
+class AnnouncementFactory extends Factory
 {
     /**
      * Define the model's default state.
