@@ -11,4 +11,9 @@ class AnnouncementType extends Model
 
     protected $fillable = ['name'];
     protected $hidden = ['create_at', 'updated_at'];
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class, 'type_id');
+    }
 }
