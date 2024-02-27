@@ -5,6 +5,7 @@ namespace App\Http\Transformers;
 use Illuminate\Pagination\UrlWindow;
 use League\Fractal\Pagination\PaginatorInterface;
 use League\Fractal\Serializer\ArraySerializer;
+use Illuminate\Support\Facades\URL;
 
 class CustomArraySerializer extends ArraySerializer
 {
@@ -12,6 +13,8 @@ class CustomArraySerializer extends ArraySerializer
     {
         $currentPage = (int)$paginator->getCurrentPage();
         $lastPage = (int)$paginator->getLastPage();
+        $allQueryParams = request()->query();
+        $filteredParams = collect($allQueryParams)->except('page')->all();
 
         $from = (int)$paginator->getPerPage() * ($currentPage - 1) + 1;
         $pagination = [
@@ -28,17 +31,40 @@ class CustomArraySerializer extends ArraySerializer
 
         $previous = (object)['label' => 'Previous'];
         if ($currentPage > 1) {
-            $previous = (object)['label' => 'Previous', 'url' => $paginator->getUrl($currentPage - 1)];
+            $previous = (object)[
+                'label' => 'Previous',
+                'url' => $this->appendQueryParamsToUrl($paginator->getUrl($currentPage - 1), $filteredParams)
+            ];
         }
-
         $next = (object)['label' => 'Next'];
         if ($currentPage < $lastPage) {
-            $next = (object)['label' => 'Next', 'url' => $paginator->getUrl($currentPage + 1)];
+            $next = (object)[
+                'label' => 'Next',
+                'url' => $this->appendQueryParamsToUrl($paginator->getUrl($currentPage + 1), $filteredParams)
+            ];
+        }
+        $elementPaginatiors = $this->elements($paginator->getPaginator());
+        $numberedPaginators = [];
+        foreach ($elementPaginatiors as $pag) {
+            $numberedPaginators[] = (object)[
+                'label' => $pag->label,
+                'url' => isset($pag->url) ? $this->appendQueryParamsToUrl($pag->url, $filteredParams) : null,
+                'active' => $pag->active ?? null
+            ];
+        }
+        /** @phpstan-ignore-next-line */
+        $pagination['links'] = array_merge([$previous], $numberedPaginators, [$next]);
+        return ['pagination' => $pagination];
+    }
+
+    protected function appendQueryParamsToUrl($url, $queryParams): string
+    {
+        if (empty($queryParams)) {
+            return $url;
         }
 
-        $pagination['links'] = array_merge([$previous], $this->elements($paginator->getPaginator()), [$next]);
-
-        return ['pagination' => $pagination];
+        $separator = (strpos($url, '?') !== false) ? '&' : '?';
+        return $url . $separator . http_build_query($queryParams);
     }
 
     protected function elements($paginator)
