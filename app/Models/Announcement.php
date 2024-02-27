@@ -5,10 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Announcement extends Model
+class Announcement extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
+
+    public const MEDIA_COLLECTION_DOCUMENT = 'document';
 
     protected $fillable = [
         'type_id',
@@ -16,7 +23,7 @@ class Announcement extends Model
         'title',
         'position',
         'degree',
-      
+
         'open_position',
         'start_date',
         'end_date',
@@ -45,6 +52,11 @@ class Announcement extends Model
         if (isset($filters['type_id']) && $filters['type_id'] != null) {
             $query->where('type_id', $filters['type_id']);
         }
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection(self::MEDIA_COLLECTION_DOCUMENT);
     }
 
 

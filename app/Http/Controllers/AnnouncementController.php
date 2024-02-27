@@ -20,8 +20,6 @@ class AnnouncementController extends Controller
         $filters = $request->only(['category_id', 'type_id']);
         $announcements = Announcement::filter($filters)->paginate(10);
         return response()->json($announcements);
-
-        //dd($announcements);
     }
 
     public function getAllAnnouncementTypes()
@@ -35,8 +33,6 @@ class AnnouncementController extends Controller
         $allAnnouncementCategories = AnnouncementCategory::all();
         return response()->json($allAnnouncementCategories);
     }
-
-
 
 
 }

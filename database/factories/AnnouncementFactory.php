@@ -25,7 +25,6 @@ class AnnouncementFactory extends Factory
             'title' => $this->faker->sentence,
             'position' => $this->faker->jobTitle,
             'degree' => $this->faker->word,
-          
             'open_position' => $this->faker->numberBetween(1, 10),
             'start_date' => $this->faker->dateTimeBetween('+1 week', '+1 month')->format('Y-m-d'),
             'end_date' => $this->faker->optional()?->dateTimeBetween('+2 months', '+6 months')?->format('Y-m-d'),
