@@ -15,7 +15,7 @@ class Announcement extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    public const MEDIA_COLLECTION_DOCUMENT = 'document';
+    public const MEDIA_COLLECTION_DOCUMENTS = 'documents';
 
     protected $fillable = [
         'type_id',
@@ -23,7 +23,6 @@ class Announcement extends Model implements HasMedia
         'title',
         'position',
         'degree',
-
         'open_position',
         'start_date',
         'end_date',
@@ -56,7 +55,7 @@ class Announcement extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection(self::MEDIA_COLLECTION_DOCUMENT);
+        $this->addMediaCollection(self::MEDIA_COLLECTION_DOCUMENTS);
     }
 
 

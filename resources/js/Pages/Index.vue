@@ -41,13 +41,6 @@
                                    class="tab font-bold rounded-md"
                                    name="type_tab"
                                    role="tab" type="radio"/>
-                                   
-                            <!-- <input v-model="typeTap" :checked="typeTap==='support'"
-                                   :class="typeTap==='support' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
-                                   aria-label="สายสนับสนุน"
-                                   class="tab font-bold rounded-md" name="type_tab"
-                                   role="tab"
-                                   type="radio" value="support"/> -->
                         </div>
                     </div>
                     <div class="w-full lg:w-10/12 xl:w-8/12 mt-4">
@@ -59,25 +52,6 @@
                                    class="tab font-bold rounded-md"
                                    name="state_tab"
                                    role="tab" type="radio"/>
-
-                            <!-- <input v-model="stateTap" :checked="stateTap==='exam'"
-                                   :class="stateTap==='exam' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
-                                   aria-label="รายชื่อผู้มีสิทธิ์สอบข้อเขียน"
-                                   class="tab font-bold rounded-md" name="state_tab"
-                                   role="tab"
-                                   type="radio" value="exam"/>
-                            <input v-model="stateTap" :checked="stateTap==='interview'"
-                                   :class="stateTap==='interview' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
-                                   aria-label="รายชื่อผู้มีสิทธิ์สอบสัมภาษณ์"
-                                   class="tab font-bold rounded-md" name="state_tab"
-                                   role="tab"
-                                   type="radio" value="interview"/>
-                            <input v-model="stateTap" :checked="stateTap==='pass'"
-                                   :class="stateTap==='pass' ?'bg-blue-800 text-white':'text-blue-800 bg-white'"
-                                   aria-label="รายชื่อผู้ที่ผ่านการสอบคัดเลือก"
-                                   class="tab font-bold rounded-md" name="state_tab"
-                                   role="tab"
-                                   type="radio" value="pass"/> -->
                         </div>
                     </div>
 
@@ -100,14 +74,27 @@
                         </thead>
                         <tbody>
                         <tr v-for="(announcement,index) in announcements" :key="index">
-                            <th>{{index+1}}</th>
-                            <td>{{announcement.title}}</td>
-                            <td>{{announcement.position}}</td>
-                            <td>{{announcement.degree}}</td>
-                            <td>{{currentTypeTabName}}</td>
-                            <td>{{announcement.open_position}}</td>
-                            <td>{{announcement.start_date}} - {{announcement.end_date}}</td>
-                            <td>pdf</td>
+                            <th>{{ index + 1 }}</th>
+                            <td>{{ announcement.title }}</td>
+                            <td>{{ announcement.position }}</td>
+                            <td>{{ announcement.degree }}</td>
+                            <td>{{ currentTypeTabName }}</td>
+                            <td>{{ announcement.open_position }}</td>
+                            <td>{{ announcement.start_date }} - {{ announcement.end_date }}</td>
+                            <td>
+                                <div class="flex justify-center gap-1">
+                                    <a v-for="(doc,index) in announcement.documents.data" :key="index" :href="doc.url"
+                                       target="_blank">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                             stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
                             <td>
                                 <button
                                     class="bg-blue-800 px-4 py-2 text-white text-sm rounded-md font-semibold flex items-center whitespace-nowrap">
@@ -149,8 +136,8 @@ export default {
         return {
             typeTap: 'academic',
             stateTap: 'apply',
-            typeId:1,
-            categoryId:1,
+            typeId: 1,
+            categoryId: 1,
             announcements: [],
             currentPage: 1,
             allTypes: [],
@@ -167,7 +154,7 @@ export default {
         this.allTypes = allTypes;
         this.allCategories = allCategories;
         this.announcements = announcements;
-     
+
         // console.log('-----------------');
         // console.log(this.announcements);
         // console.log('-----------------');
@@ -175,22 +162,22 @@ export default {
     },
 
     methods: {
-        async getAllTypes(){
+        async getAllTypes() {
             const res = await axios.get(this.route('announcements.get_all_announcement_types'));
             return res.data
         },
 
-        async getAllCategories(){
+        async getAllCategories() {
             const res = await axios.get(this.route('announcements.get_all_announcement_categories'));
             return res.data
         },
 
-        async loadAnnouncements(){
+        async loadAnnouncements() {
 
-            const res = await axios.get(this.route('announcements.index',{
-            type_id: this.typeId,
-            category_id: this.categoryId
-            }));                 
+            const res = await axios.get(this.route('announcements.index', {
+                type_id: this.typeId,
+                category_id: this.categoryId
+            }));
 
             return res.data.data;
         }
@@ -199,28 +186,28 @@ export default {
 
     watch: {
         async typeId() {
-            this.announcements = await this.loadAnnouncements(); 
-        // console.log('-----------------');
-        // console.log(this.typeId);
-        // console.log('-----------------');
+            this.announcements = await this.loadAnnouncements();
+            // console.log('-----------------');
+            // console.log(this.typeId);
+            // console.log('-----------------');
         },
         async categoryId() {
-            this.announcements = await this.loadAnnouncements(); 
-        // console.log('-----------------');
-        // console.log(this.categoryId);
-        // console.log('-----------------');
+            this.announcements = await this.loadAnnouncements();
+            // console.log('-----------------');
+            // console.log(this.categoryId);
+            // console.log('-----------------');
         },
- 
+
     },
 
-     computed: {
+    computed: {
         currentTypeTabName() {
             const tab = this.allTypes.find(t => {
                 return t.id === this.typeId
             });
             return tab.name;
         }
-        }
+    }
 };
 </script>
 

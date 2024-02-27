@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Transformers\AnnouncementTransformer;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\AnnouncementCategory;
@@ -11,7 +12,6 @@ class AnnouncementController extends Controller
 {
     public function index(Request $request)
     {
-        // $announcements = Announcement::all();
         $request->validate([
             'type_id' => ['nullable', 'exists:announcement_types,id'],
             'category_id' => ['nullable', 'exists:announcement_categories,id']
@@ -19,7 +19,8 @@ class AnnouncementController extends Controller
 
         $filters = $request->only(['category_id', 'type_id']);
         $announcements = Announcement::filter($filters)->paginate(10);
-        return response()->json($announcements);
+        $announcementData = fractal($announcements, new AnnouncementTransformer())->includeDocuments()->toArray();
+        return response()->json($announcementData);
     }
 
     public function getAllAnnouncementTypes()
