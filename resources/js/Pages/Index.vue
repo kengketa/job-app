@@ -56,7 +56,7 @@
                     </div>
 
                 </div>
-                <div id="table" class="mt-4 overflow-x-scroll">
+                <div id="table" class="mt-4 overflow-x-scroll min-h-96">
                     <table class="table table-zebra">
                         <!-- head -->
                         <thead>
@@ -72,9 +72,9 @@
                             <th>สมัครงาน</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr v-for="(announcement,index) in announcements" :key="index">
-                            <th>{{ index + 1 }}</th>
+                        <tbody v-if="pagination!=null">
+                        <tr v-for="(announcement,index) in announcements"  :key="index">
+                            <th>{{  rowIndex(index) }}</th>
                             <td>{{ announcement.title }}</td>
                             <td>{{ announcement.position }}</td>
                             <td>{{ announcement.degree }}</td>
@@ -167,6 +167,12 @@ export default {
     },
 
     methods: {
+        rowIndex(index){
+            if(this.pagination === null){
+                return null;
+            }
+            return(this.pagination.current_page - 1) * this.pagination.per_page + index + 1;
+        },
         selectPage(pag) {
             if (pag.url === undefined) {
                 return;
