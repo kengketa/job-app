@@ -105,13 +105,15 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="pagination" class="mt-2 flex justify-between items-center">
-                    <div>แสดง 1 ถึง 10 จาก 33 แถว</div>
+                <div v-if="pagination != null" id="pagination" class="mt-2 flex justify-between items-center">
+                    <div>แสดง {{ pagination.from }} ถึง {{ pagination.to }} จาก {{ pagination.total }} แถว</div>
                     <div class="join">
-                        <button class="join-item btn btn-md">1</button>
-                        <button class="join-item btn btn-md btn-active">2</button>
-                        <button class="join-item btn btn-md">3</button>
-                        <button class="join-item btn btn-md">4</button>
+                        <button v-for="(pag,index) in pagination.links" :key="index"
+                                :class="pag.active ?'btn-active':''"
+                                class="join-item btn btn-md"
+                                @click="selectPage(pag)">
+                            {{ pag.label }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -142,9 +144,15 @@ export default {
             currentPage: 1,
             allTypes: [],
             allCategories: [],
+            pagination: null,
+            loadAnnouncementUrl: null
         };
     },
     async mounted() {
+        this.loadAnnouncementUrl = this.route('announcements.index', {
+            type_id: this.typeId,
+            category_id: this.categoryId
+        });
         const promises = [
             this.getAllTypes(),
             this.getAllCategories(),
@@ -153,15 +161,18 @@ export default {
         const [allTypes, allCategories, announcements] = await Promise.all(promises);
         this.allTypes = allTypes;
         this.allCategories = allCategories;
-        this.announcements = announcements;
-
-        // console.log('-----------------');
-        // console.log(this.announcements);
-        // console.log('-----------------');
+        this.announcements = announcements.data;
+        this.pagination = announcements.meta.pagination;
 
     },
 
     methods: {
+        selectPage(pag) {
+            if (pag.url === undefined) {
+                return;
+            }
+            this.loadAnnouncementUrl = pag.url;
+        },
         async getAllTypes() {
             const res = await axios.get(this.route('announcements.get_all_announcement_types'));
             return res.data
@@ -173,31 +184,35 @@ export default {
         },
 
         async loadAnnouncements() {
-
-            const res = await axios.get(this.route('announcements.index', {
-                type_id: this.typeId,
-                category_id: this.categoryId
-            }));
-
-            return res.data.data;
+            const res = await axios.get(this.loadAnnouncementUrl);
+            return res.data;
         }
-
     },
 
     watch: {
         async typeId() {
-            this.announcements = await this.loadAnnouncements();
-            // console.log('-----------------');
-            // console.log(this.typeId);
-            // console.log('-----------------');
+            this.loadAnnouncementUrl = this.route('announcements.index', {
+                type_id: this.typeId,
+                category_id: this.categoryId
+            });
+            const res = await this.loadAnnouncements();
+            this.announcements = res.data;
+            this.pagination = res.meta.pagination;
         },
         async categoryId() {
-            this.announcements = await this.loadAnnouncements();
-            // console.log('-----------------');
-            // console.log(this.categoryId);
-            // console.log('-----------------');
+            this.loadAnnouncementUrl = this.route('announcements.index', {
+                type_id: this.typeId,
+                category_id: this.categoryId
+            });
+            const res = await this.loadAnnouncements();
+            this.announcements = res.data;
+            this.pagination = res.meta.pagination;
         },
-
+        async loadAnnouncementUrl() {
+            const res = await this.loadAnnouncements();
+            this.announcements = res.data;
+            this.pagination = res.meta.pagination;
+        },
     },
 
     computed: {

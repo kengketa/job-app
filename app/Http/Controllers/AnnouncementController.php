@@ -18,7 +18,7 @@ class AnnouncementController extends Controller
         ]);
 
         $filters = $request->only(['category_id', 'type_id']);
-        $announcements = Announcement::filter($filters)->paginate(10);
+        $announcements = Announcement::filter($filters)->paginate(2);
         $announcementData = fractal($announcements, new AnnouncementTransformer())->includeDocuments()->toArray();
         return response()->json($announcementData);
     }

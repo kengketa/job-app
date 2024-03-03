@@ -4,6 +4,7 @@ namespace App\Http\Transformers;
 
 
 use App\Models\Announcement;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 class AnnouncementTransformer extends TransformerAbstract
@@ -20,10 +21,9 @@ class AnnouncementTransformer extends TransformerAbstract
             'position' => $announcement->position,
             'degree' => $announcement->degree,
             'open_position' => $announcement->open_position,
-            'start_date' => $announcement->start_date,
+            'start_date' => Carbon::parse($announcement->start_date)->formatLocalized('l j F Y'),
             'end_date' => $announcement->end_date,
         ];
-
         return $data;
     }
 
