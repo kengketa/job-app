@@ -6,6 +6,7 @@ namespace App\Http\Transformers;
 use App\Models\Announcement;
 use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
+use Phattarachai\ThaiDate\ThaiDate;
 
 class AnnouncementTransformer extends TransformerAbstract
 {
@@ -21,8 +22,10 @@ class AnnouncementTransformer extends TransformerAbstract
             'position' => $announcement->position,
             'degree' => $announcement->degree,
             'open_position' => $announcement->open_position,
-            'start_date' => Carbon::parse($announcement->start_date)->formatLocalized('l j F Y'),
-            'end_date' => $announcement->end_date,
+           // 'start_date' => Carbon::parse($announcement->start_date)->formatLocalized('%d %B %Y'),
+            'start_date' => Carbon::parse($announcement->start_date)->thaidate('j M Y'),
+            'end_date' => Carbon::parse($announcement->end_date)->thaidate('j M Y'),
+           // 'end_date' => $announcement->end_date,
         ];
         return $data;
     }

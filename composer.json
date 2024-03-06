@@ -12,6 +12,7 @@
         "laravel/jetstream": "^4.2",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "phattarachai/thaidate": "^12.1",
         "spatie/laravel-fractal": "^6.0",
         "spatie/laravel-medialibrary": "^10",
         "tightenco/ziggy": "^1.0"
