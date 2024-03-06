@@ -73,14 +73,18 @@
                         </tr>
                         </thead>
                         <tbody v-if="pagination!=null">
-                        <tr v-for="(announcement,index) in announcements"  :key="index">
-                            <th>{{  rowIndex(index) }}</th>
+                        <tr v-for="(announcement,index) in announcements" :key="index">
+                            <th>{{ rowIndex(index) }}</th>
                             <td>{{ announcement.title }}</td>
                             <td>{{ announcement.position }}</td>
                             <td>{{ announcement.degree }}</td>
                             <td>{{ currentTypeTabName }}</td>
                             <td>{{ announcement.open_position }}</td>
-                            <td>{{ announcement.start_date }} - {{ announcement.end_date }}</td>
+                            <td>
+                                <p class="whitespace-nowrap">
+                                    {{ announcement.start_date }} - {{ announcement.end_date }}
+                                </p>
+                            </td>
                             <td>
                                 <div class="flex justify-center gap-1">
                                     <a v-for="(doc,index) in announcement.documents.data" :key="index" :href="doc.url"
@@ -167,11 +171,11 @@ export default {
     },
 
     methods: {
-        rowIndex(index){
-            if(this.pagination === null){
+        rowIndex(index) {
+            if (this.pagination === null) {
                 return null;
             }
-            return(this.pagination.current_page - 1) * this.pagination.per_page + index + 1;
+            return (this.pagination.current_page - 1) * this.pagination.per_page + index + 1;
         },
         selectPage(pag) {
             if (pag.url === undefined) {
