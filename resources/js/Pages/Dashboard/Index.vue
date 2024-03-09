@@ -1,7 +1,16 @@
 <template>
     <Layout>
         <p>
-            Hello {{ user.name }}, How are you doing?
+            Hello {{ user.id }}, How are you doing?
+        </p>
+
+        <p>
+            Hello {{ number  }}, How are you doing?
+        </p>  
+
+        
+        <p>
+            Hello {{ date  }}, How are you doing?
         </p>
     </Layout>
 
@@ -20,6 +29,10 @@ export default {
         number: {
             type: Number,
             default: 0
+        },
+        date: {
+            type: String,
+            default: "" 
         }
     },
     mounted() {

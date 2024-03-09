@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Dashboard\AnnouncementController as DashboardAnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,9 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [PageController::class, 'dashboard'])->name('dashboard.index');
+       
+    Route::get('/announcements', [DashboardAnnouncementController::class, 'index'])->name('dashboard.announcement.index');
+
     });
 });
 
@@ -43,4 +47,6 @@ Route::get('/get-all-announcements-type', [AnnouncementController::class, 'getAl
 Route::get('/get-all-announcements-categories', [AnnouncementController::class, 'getAllAnnouncementCategories'])->name(
     'announcements.get_all_announcement_categories'
 );
+
+
 

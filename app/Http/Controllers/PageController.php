@@ -17,7 +17,9 @@ class PageController extends Controller
     {
         $user = Auth::user();
         return Inertia::render('Dashboard/Index')->with([
-            'user' => $user
+            'user' => $user,
+            'number' => 9,
+            'date' => "9-3-2567",
         ]);
     }
 }
