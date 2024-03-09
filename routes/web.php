@@ -31,14 +31,16 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 // admin panel
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
+        Route::get('/', [PageController::class, 'dashboard'])->name('dashboard.index');
     });
 });
 
 
 Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
-
-Route::get('/get-all-announcements-type', [AnnouncementController::class, 'getAllAnnouncementTypes'])->name('announcements.get_all_announcement_types');
-
-Route::get('/get-all-announcements-categories', [AnnouncementController::class, 'getAllAnnouncementCategories'])->name('announcements.get_all_announcement_categories');
+Route::get('/get-all-announcements-type', [AnnouncementController::class, 'getAllAnnouncementTypes'])->name(
+    'announcements.get_all_announcement_types'
+);
+Route::get('/get-all-announcements-categories', [AnnouncementController::class, 'getAllAnnouncementCategories'])->name(
+    'announcements.get_all_announcement_categories'
+);
 
