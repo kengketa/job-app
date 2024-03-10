@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\PasswordReset;
+use App\Jobs\SendForgotPasswordEmail;
 
 class User extends Authenticatable
 {
@@ -28,7 +30,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -40,7 +41,6 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-
     /**
      * The attributes that should be cast.
      *
@@ -49,7 +49,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     /**
      * The accessors to append to the model's array form.
      *
@@ -58,4 +57,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        SendForgotPasswordEmail::dispatch($this, $token);
+    }
 }
