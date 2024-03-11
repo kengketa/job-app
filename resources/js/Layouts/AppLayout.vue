@@ -40,14 +40,14 @@ const logout = () => {
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('dashboard.index')">
                                     <ApplicationMark class="block h-9 w-auto"/>
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :active="route().current('dashboard')" :href="route('dashboard')">
+                                <NavLink :active="route().current('dashboard.index')" :href="route('dashboard.index')">
                                     Dashboard
                                 </NavLink>
                             </div>
@@ -219,10 +219,12 @@ const logout = () => {
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}"
                      class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :active="route().current('dashboard')" :href="route('dashboard')">
+                        <ResponsiveNavLink :active="route().current('dashboard.index')"
+                                           :href="route('dashboard.index')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :active="route().current('dashboard')" :href="route('dashboard')">
+                        <ResponsiveNavLink :active="route().current('dashboard.index')"
+                                           :href="route('dashboard.index')">
                             Dashboard
                         </ResponsiveNavLink>
                     </div>

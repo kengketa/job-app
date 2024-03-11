@@ -28,14 +28,13 @@ use App\Http\Controllers\Dashboard\AnnouncementController as DashboardAnnounceme
 //});
 
 Route::get('/', [PageController::class, 'index'])->name('index');
-
 // admin panel
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', [PageController::class, 'dashboard'])->name('dashboard.index');
-       
-    Route::get('/announcements', [DashboardAnnouncementController::class, 'index'])->name('dashboard.announcement.index');
+    Route::prefix('dashboard')->as('dashboard.')->group(function () {
+        Route::get('/', [PageController::class, 'dashboard'])->name('index');
 
+        Route::get('/announcements', [DashboardAnnouncementController::class, 'index'])
+            ->name('announcements.index');
     });
 });
 

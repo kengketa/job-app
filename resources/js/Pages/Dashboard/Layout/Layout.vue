@@ -3,7 +3,7 @@
         <nav class="bg-blue-300 fixed top-0 z-30 w-full">
             <div class="navbar">
                 <div class="flex-1">
-                    <a class="btn btn-ghost text-xl">kshjkfsdghkfj</a>
+                    <a class="btn btn-ghost text-xl">Logo</a>
                 </div>
                 <div class="flex-none gap-2">
                     <div class="dropdown dropdown-end">
@@ -16,13 +16,14 @@
                         <ul class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                             tabindex="0">
                             <li>
-                                <a class="justify-between">
+                                <Link :href="route('profile.show')" class="justify-between">
                                     Profile
-                                    <span class="badge">New</span>
-                                </a>
+                                </Link>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li>
+                                <button @click.prevent="logout">Logout</button>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -56,12 +57,19 @@
 </template>
 <script>
 import SideBar from "@/Pages/Dashboard/Layout/SideBar.vue";
+import {Inertia} from "@inertiajs/inertia";
+import {Link} from '@inertiajs/inertia-vue3';
 
 export default {
     name: "DashboardLayout",
-    components: {SideBar},
+    methods: {
+        logout() {
+            Inertia.post(this.route('logout'));
+        }
+    },
+    components: {SideBar, Link},
     data() {
         return {};
-    }
+    },
 };
 </script>

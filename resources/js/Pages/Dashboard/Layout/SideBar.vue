@@ -48,7 +48,13 @@ export default {
                     name: 'Dashboard',
                     href: this.route('dashboard.index'),
                     icon: HomeIcon,
-                    routeGroup: 'dashboard.*',
+                    routeGroup: 'dashboard.index',
+                },
+                announcements: {
+                    name: 'Announcement',
+                    href: this.route('dashboard.announcements.index'),
+                    icon: HomeIcon,
+                    routeGroup: 'dashboard.announcements.*',
                 }
             }
 
@@ -58,6 +64,7 @@ export default {
         availableNavs() {
             const navs = [];
             navs.push(this.navs.dashboard);
+            navs.push(this.navs.announcements);
             return navs;
         }
     },
