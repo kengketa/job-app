@@ -69,7 +69,7 @@
 
                     </td>
                     <td class="px-6 py-4">
-                        lsdhf
+                        <Link :href="route('dashboard.announcements.show',announcement.id)">EDIT</Link>
                     </td>
                 </tr>
                 </tbody>
@@ -92,10 +92,11 @@
 <script>
 import Layout from "@/Pages/Dashboard/Layout/Layout.vue";
 import {Inertia} from "@inertiajs/inertia";
+import {Link} from "@inertiajs/vue3";
 
 export default {
     name: "AnnouncementIndex",
-    components: {Layout},
+    components: {Layout, Link},
     props: {
         announcements: {
             type: Object,

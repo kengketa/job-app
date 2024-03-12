@@ -24,10 +24,11 @@ class AnnouncementTransformer extends TransformerAbstract
             'position' => $announcement->position,
             'degree' => $announcement->degree,
             'open_position' => $announcement->open_position,
-            // 'start_date' => Carbon::parse($announcement->start_date)->formatLocalized('%d %B %Y'),
-            'start_date' => Carbon::parse($announcement->start_date)->thaidate('j M Y'),
-            'end_date' => Carbon::parse($announcement->end_date)->thaidate('j M Y'),
-            // 'end_date' => $announcement->end_date,
+            'start_date' => $announcement->start_date,
+            'end_date' => $announcement->end_date,
+            'display_start_date' => Carbon::parse($announcement->start_date)->thaidate('j M Y'),
+            'display_end_date' => Carbon::parse($announcement->end_date)->thaidate('j M Y'),
+
         ];
         return $data;
     }

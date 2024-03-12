@@ -12,6 +12,7 @@ class AnnouncementDocumentTransformer extends TransformerAbstract
         $data = [
             'id' => $media->id,
             'url' => $media->getFullUrl(),
+            'name' => $media->file_name
         ];
 
         return $data;

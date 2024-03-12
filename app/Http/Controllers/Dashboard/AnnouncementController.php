@@ -27,4 +27,16 @@ class AnnouncementController extends Controller
         ]);
     }
 
+    public function show(Announcement $announcement)
+    {
+        $allTypes = AnnouncementType::all()->toArray();
+        $allCategories = AnnouncementCategory::all()->toArray();
+        $announcementData = fractal($announcement, new AnnouncementTransformer())->includeDocuments()->toArray();
+        return Inertia::render('Dashboard/Announcement/Show')->with([
+            'allTypes' => $allTypes,
+            'allCategories' => $allCategories,
+            'announcement' => $announcementData,
+        ]);
+    }
+
 }

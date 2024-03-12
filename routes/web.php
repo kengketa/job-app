@@ -35,6 +35,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::get('/announcements', [DashboardAnnouncementController::class, 'index'])
             ->name('announcements.index');
+        Route::get('/announcements/{announcement}', [DashboardAnnouncementController::class, 'show'])
+            ->name('announcements.show');
     });
 });
 
