@@ -17,15 +17,17 @@ class AnnouncementTransformer extends TransformerAbstract
         $data = [
             'id' => $announcement->id,
             'type_id' => $announcement->type_id,
+            'type_name' => $announcement->type->name,
             'category_id' => $announcement->category_id,
+            'category_name' => $announcement->category->name,
             'title' => $announcement->title,
             'position' => $announcement->position,
             'degree' => $announcement->degree,
             'open_position' => $announcement->open_position,
-           // 'start_date' => Carbon::parse($announcement->start_date)->formatLocalized('%d %B %Y'),
+            // 'start_date' => Carbon::parse($announcement->start_date)->formatLocalized('%d %B %Y'),
             'start_date' => Carbon::parse($announcement->start_date)->thaidate('j M Y'),
             'end_date' => Carbon::parse($announcement->end_date)->thaidate('j M Y'),
-           // 'end_date' => $announcement->end_date,
+            // 'end_date' => $announcement->end_date,
         ];
         return $data;
     }

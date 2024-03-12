@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="pl-80 pt-16">
-            <div class="px-4 py-4 overscroll-y-auto">
+            <div class="px-8 py-8 overscroll-y-auto">
                 <slot></slot>
             </div>
         </div>
