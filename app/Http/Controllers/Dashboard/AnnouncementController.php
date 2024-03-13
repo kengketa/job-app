@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Actions\Dashboard\SaveAnnouncementAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\CreateOrUpdateAnnouncementRequest;
 use App\Models\AnnouncementCategory;
 use App\Models\AnnouncementType;
 use Illuminate\Http\Request;
@@ -37,6 +39,26 @@ class AnnouncementController extends Controller
             'allCategories' => $allCategories,
             'announcement' => $announcementData,
         ]);
+    }
+
+    public function edit(Announcement $announcement)
+    {
+        $allTypes = AnnouncementType::all()->toArray();
+        $allCategories = AnnouncementCategory::all()->toArray();
+        $announcementData = fractal($announcement, new AnnouncementTransformer())->includeDocuments()->toArray();
+        return Inertia::render('Dashboard/Announcement/Edit')->with([
+            'allTypes' => $allTypes,
+            'allCategories' => $allCategories,
+            'announcement' => $announcementData,
+        ]);
+    }
+
+    public function update(
+        CreateOrUpdateAnnouncementRequest $request,
+        Announcement $announcement,
+        SaveAnnouncementAction $saveAnnouncementAction
+    ) {
+        $saveAnnouncementAction->execute($announcement, $request->validated());
     }
 
 }

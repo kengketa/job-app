@@ -1,7 +1,9 @@
 <template>
     <Layout>
-        <AnnouncementForm :all-categories="allCategories" :all-types="allTypes" :announcement="announcement"
-                          mode="show"/>
+        <AnnouncementForm :all-categories="allCategories" :all-types="allTypes"
+                          :announcement="announcement"
+                          mode="edit"
+        />
     </Layout>
 
 </template>
@@ -13,7 +15,7 @@ import {useForm} from '@inertiajs/inertia-vue3';
 import AnnouncementForm from "@/Pages/Dashboard/Announcement/AnnouncementForm.vue";
 
 export default {
-    name: "AnnouncementShow",
+    name: "AnnouncementCreate",
     components: {Layout, Link, AnnouncementForm},
     props: {
         announcement: {
@@ -27,10 +29,10 @@ export default {
         allCategories: {
             type: Array,
             required: true
-        }
+        },
+        errors: Object,
     },
     mounted() {
-
     },
     data() {
         return {};
