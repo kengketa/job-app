@@ -75,8 +75,15 @@
                         </div>
 
                     </td>
-                    <td class="px-6 py-4">
-                        <Link :href="route('dashboard.announcements.edit',announcement.id)">EDIT</Link>
+                    <td class="px-6 py-4 flex flex-col items-center gap-1">
+                        <Link :href="route('dashboard.announcements.edit',announcement.id)"
+                              class="btn btn-primary btn-sm w-16">
+                            EDIT
+                        </Link>
+                        <button class="btn btn-error btn-sm w-16 text-gray-100 uppercase" type="button"
+                                @click="handleDelete(announcement)">
+                            DELETE
+                        </button>
                     </td>
                 </tr>
                 </tbody>
@@ -99,7 +106,7 @@
 <script>
 import Layout from "@/Pages/Dashboard/Layout/Layout.vue";
 import {Inertia} from "@inertiajs/inertia";
-import {Link} from "@inertiajs/vue3";
+import {Link, router, useForm} from "@inertiajs/vue3";
 
 export default {
     name: "AnnouncementIndex",
@@ -136,6 +143,20 @@ export default {
         selectPage(pag) {
             Inertia.get(pag.url);
         },
+        handleDelete(announcement) {
+            this.$swal.fire({
+                title: "คุณต้องการที่จะลบประกาศ " + announcement.title + '?',
+                showDenyButton: true,
+                showCancelButton: true,
+                showConfirmButton: false,
+                denyButtonText: 'ลบ'
+            }).then((result) => {
+                if (result.isDenied) {
+                    Inertia.delete(this.route('dashboard.announcements.destroy', announcement.id));
+                    window.location.reload();
+                }
+            });
+        }
     },
     watch: {
         filters: {

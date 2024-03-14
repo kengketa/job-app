@@ -85,4 +85,10 @@ class AnnouncementController extends Controller
             ->with("success", "Announcement updated.");
     }
 
+    public function destroy(Announcement $announcement)
+    {
+        $announcement->delete();
+        Session::flash('success', 'Announcement deleted.');
+    }
+
 }

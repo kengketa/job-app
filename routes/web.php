@@ -45,6 +45,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
             ->name('announcements.edit');
         Route::patch('/announcements/{announcement}', [DashboardAnnouncementController::class, 'update'])
             ->name('announcements.update');
+        Route::delete('/announcements/{announcement}', [DashboardAnnouncementController::class, 'destroy'])
+            ->name('announcements.destroy');
     });
 });
 
