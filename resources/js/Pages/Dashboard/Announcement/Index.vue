@@ -50,7 +50,11 @@
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <!-- <th>{{ index + 1 }}</th> -->
                     <th class="text-center">{{ announcement.id }}</th>
-                    <td class="px-6 py-4">{{ announcement.title }}</td>
+                    <td class="px-6 py-4">
+                        <Link :href="route('dashboard.announcements.show',announcement.id)" class="underline">
+                            {{ announcement.title }}
+                        </Link>
+                    </td>
                     <td class="px-6 py-4">{{ announcement.position }}</td>
                     <td class="px-6 py-4">{{ announcement.degree }}</td>
                     <td class="px-6 py-4">{{ announcement.type_name }}</td>
