@@ -8,6 +8,7 @@ use App\Http\Requests\Dashboard\CreateOrUpdateAnnouncementRequest;
 use App\Models\AnnouncementCategory;
 use App\Models\AnnouncementType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use App\Models\Announcement;
 use App\Http\Transformers\AnnouncementTransformer;
@@ -59,6 +60,10 @@ class AnnouncementController extends Controller
         SaveAnnouncementAction $saveAnnouncementAction
     ) {
         $saveAnnouncementAction->execute($announcement, $request->validated());
+
+        return redirect()
+            ->route("dashboard.announcements.show", $announcement)
+            ->with("success", "Announcement updated.");
     }
 
 }

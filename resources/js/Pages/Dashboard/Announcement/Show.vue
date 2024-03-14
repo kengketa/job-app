@@ -1,5 +1,8 @@
 <template>
     <Layout>
+        <div class="w-full flex justify-end">
+            <Link :href="route('dashboard.announcements.edit',announcement.id)" class="btn btn-primary">EDIT</Link>
+        </div>
         <AnnouncementForm :all-categories="allCategories" :all-types="allTypes" :announcement="announcement"
                           mode="show"/>
     </Layout>

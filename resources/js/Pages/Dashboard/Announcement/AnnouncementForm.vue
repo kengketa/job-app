@@ -109,7 +109,7 @@
             </div>
         </div>
         <p class="mt-6">files</p>
-        <div class="flex flex-wrap gap-2 mt-1 border border-1 border-gray-300 p-2 rounded-lg">
+        <div class="flex flex-wrap gap-2 mt-1 border border-1 border-gray-300 p-2 rounded-lg min-h-20">
             <div v-for="(doc,index) in displayDocs" :key="index" class="flex flex-col items-center">
                 <a :href="doc.url" target="_blank">
                     <div class="flex flex-col items-center">
@@ -125,7 +125,7 @@
                         <p class="text-gray-500 truncate max-w-32">{{ doc.name }}</p>
                     </div>
                 </a>
-                <button class="text-red-500" type="button" @click="deleteDoc(doc)">
+                <button v-if="mode!=='show'" class="text-red-500" type="button" @click="deleteDoc(doc)">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.0"
                          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -135,8 +135,6 @@
                     </svg>
                 </button>
             </div>
-
-
             <button v-if="mode!=='show'" class="w-20 min-h-20 border border-dashed rounded-md" type="button"
                     @click="$refs.documentInput.click()">+
             </button>
@@ -148,7 +146,7 @@
             </label>
         </div>
         <div v-if="mode!=='show'" class="w-full flex justify-end mt-4">
-            <button class="btn btn-primary uppercase" type="submit">Submit</button>
+            <button :disabled="submitting" class="btn btn-primary uppercase" type="submit">Submit</button>
         </div>
     </form>
 
@@ -214,7 +212,8 @@ export default {
                 files: [],
                 delete_medias: []
             }),
-            displayDocs: []
+            displayDocs: [],
+            submitting: false
         };
     },
     methods: {
@@ -232,11 +231,12 @@ export default {
             });
 
         },
-        submit() {
+        async submit() {
+            this.submitting = true;
             let url = '';
             if (this.mode === 'edit') {
                 url = this.route('dashboard.announcements.update', this.announcement.id);
-                router.post(url, {
+                await router.post(url, {
                     _method: 'patch',
                     files: this.form.files,
                     type_id: this.form.type_id,
@@ -253,7 +253,6 @@ export default {
             if (this.mode === 'create') {
                 url = '';
             }
-
         },
     },
     watch: {},

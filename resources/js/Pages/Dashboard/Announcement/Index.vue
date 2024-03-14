@@ -33,12 +33,12 @@
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th class="px-6 py-3">#</th>
                     <th class="px-6 py-3">ประกาศ</th>
-                    <th class="px-6 py-3">ตำแหน่งที่รับสมัคร (หน่วยงาน/คณะวิชา)</th>
+                    <th class="px-6 py-3">ตำแหน่งที่รับสมัคร</th>
                     <th class="px-6 py-3">คุณวุฒิ</th>
-                    <th class="px-6 py-3">ประเภทพนักงาน</th>
-                    <th class="px-6 py-3">จำนวนอัตรา</th>
+                    <th class="px-6 py-3">ประเภท</th>
+                    <th class="px-6 py-3">อัตรา</th>
                     <th class="px-6 py-3">วันที่รับสมัคร</th>
-                    <th class="px-6 py-3">รายละเอียดคุณสมบัติ</th>
+                    <th class="px-6 py-3">รายละเอียด</th>
                     <th class="px-6 py-3">Action</th>
                 </tr>
                 </thead>
@@ -52,7 +52,11 @@
                     <td class="px-6 py-4">{{ announcement.degree }}</td>
                     <td class="px-6 py-4">{{ announcement.type_name }}</td>
                     <td class="px-6 py-4">{{ announcement.open_position }}</td>
-                    <td class="px-6 py-4">{{ announcement.start_date }} - {{ announcement.end_date }}</td>
+                    <td class="px-6 py-4">
+                        <p class="whitespace-nowrap">
+                            {{ announcement.display_start_date }} - {{ announcement.display_end_date }}
+                        </p>
+                    </td>
                     <td class="px-6 py-4">
                         <div class="flex justify-center gap-1">
                             <a v-for="(doc,index) in announcement.documents.data" :key="index" :href="doc.url"
@@ -69,7 +73,7 @@
 
                     </td>
                     <td class="px-6 py-4">
-                        <Link :href="route('dashboard.announcements.show',announcement.id)">EDIT</Link>
+                        <Link :href="route('dashboard.announcements.edit',announcement.id)">EDIT</Link>
                     </td>
                 </tr>
                 </tbody>

@@ -49,6 +49,7 @@
         </div>
         <div class="pl-80 pt-16">
             <div class="px-8 py-8 overscroll-y-auto">
+                <FlashMessage/>
                 <slot></slot>
             </div>
         </div>
@@ -59,6 +60,7 @@
 import SideBar from "@/Pages/Dashboard/Layout/SideBar.vue";
 import {Inertia} from "@inertiajs/inertia";
 import {Link} from '@inertiajs/inertia-vue3';
+import FlashMessage from "@/Components/FlashMessage.vue";
 
 export default {
     name: "DashboardLayout",
@@ -67,7 +69,7 @@ export default {
             Inertia.post(this.route('logout'));
         }
     },
-    components: {SideBar, Link},
+    components: {SideBar, Link, FlashMessage},
     data() {
         return {};
     },
