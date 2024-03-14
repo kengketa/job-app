@@ -35,6 +35,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::get('/announcements', [DashboardAnnouncementController::class, 'index'])
             ->name('announcements.index');
+        Route::get('/announcements/create', [DashboardAnnouncementController::class, 'create'])
+            ->name('announcements.create');
+        Route::post('/announcements', [DashboardAnnouncementController::class, 'store'])
+            ->name('announcements.store');
         Route::get('/announcements/{announcement}', [DashboardAnnouncementController::class, 'show'])
             ->name('announcements.show');
         Route::get('/announcements/{announcement}/edit', [DashboardAnnouncementController::class, 'edit'])

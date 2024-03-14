@@ -19,7 +19,7 @@ class AnnouncementController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['category_id', 'type_id']);
-        $announcements = Announcement::filter($filters)->paginate(30);
+        $announcements = Announcement::filter($filters)->orderBy('start_date', 'desc')->paginate(30);
         $announcementsData = fractal($announcements, new AnnouncementTransformer())->includeDocuments()->toArray();
         $allTypes = AnnouncementType::all()->toArray();
         $allCategories = AnnouncementCategory::all()->toArray();
@@ -28,6 +28,25 @@ class AnnouncementController extends Controller
             'allCategories' => $allCategories,
             'announcements' => $announcementsData,
         ]);
+    }
+
+    public function create()
+    {
+        $allTypes = AnnouncementType::all()->toArray();
+        $allCategories = AnnouncementCategory::all()->toArray();
+        return Inertia::render('Dashboard/Announcement/Create')->with([
+            'allTypes' => $allTypes,
+            'allCategories' => $allCategories,
+            'announcement' => new Announcement(),
+        ]);
+    }
+
+    public function store(CreateOrUpdateAnnouncementRequest $request, SaveAnnouncementAction $saveAnnouncementAction)
+    {
+        $announcement = $saveAnnouncementAction->execute(new Announcement(), $request->validated());
+        return redirect()
+            ->route("dashboard.announcements.show", $announcement)
+            ->with("success", "Announcement updated.");
     }
 
     public function show(Announcement $announcement)

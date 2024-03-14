@@ -1,5 +1,8 @@
 <template>
     <Layout>
+        <div class="w-full flex justify-end">
+            <Link :href="route('dashboard.announcements.create')" class="btn btn-primary">CREATE</Link>
+        </div>
         <div class="flex gap-2 w-full">
             <div class="w-80">
                 <label class="form-control w-full max-w-xs">

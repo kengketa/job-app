@@ -11,7 +11,7 @@ class SaveAnnouncementAction
 {
     protected Announcement $announcement;
 
-    public function execute(Announcement $announcement, array $data)
+    public function execute(Announcement $announcement, array $data): Announcement
     {
         $this->announcement = $announcement;
         $this->announcement->type_id = $data['type_id'];
@@ -30,6 +30,7 @@ class SaveAnnouncementAction
         if (isset($data['delete_medias'])) {
             $this->handleDeleteMedias($data['delete_medias']);
         }
+        return $this->announcement->fresh();
     }
 
     private function handleFileUpload(array $files): void

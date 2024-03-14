@@ -181,6 +181,10 @@ export default {
     },
     mounted() {
         let docs = [];
+        if (this.mode === 'create') {
+            this.displayDocs = [];
+            return;
+        }
         if (this.announcement.documents.data.length > 0) {
             this.announcement.documents.data.forEach(doc => {
                 docs.push(doc);
@@ -201,8 +205,8 @@ export default {
     data() {
         return {
             form: useForm({
-                type_id: this.announcement.type_id,
-                category_id: this.announcement.category_id,
+                type_id: this.announcement.type_id ?? "",
+                category_id: this.announcement.category_id ?? "",
                 title: this.announcement.title,
                 position: this.announcement.position,
                 degree: this.announcement.degree,
@@ -236,23 +240,23 @@ export default {
             let url = '';
             if (this.mode === 'edit') {
                 url = this.route('dashboard.announcements.update', this.announcement.id);
-                await router.post(url, {
-                    _method: 'patch',
-                    files: this.form.files,
-                    type_id: this.form.type_id,
-                    category_id: this.form.category_id,
-                    title: this.form.title,
-                    position: this.form.position,
-                    degree: this.form.degree,
-                    open_position: this.form.open_position,
-                    start_date: this.form.start_date,
-                    end_date: this.form.end_date,
-                    delete_medias: this.form.delete_medias
-                });
             }
             if (this.mode === 'create') {
-                url = '';
+                url = this.route('dashboard.announcements.store');
             }
+            await router.post(url, {
+                _method: this.mode === 'edit' ? 'patch' : 'post',
+                files: this.form.files,
+                type_id: this.form.type_id,
+                category_id: this.form.category_id,
+                title: this.form.title,
+                position: this.form.position,
+                degree: this.form.degree,
+                open_position: this.form.open_position,
+                start_date: this.form.start_date,
+                end_date: this.form.end_date,
+                delete_medias: this.form.delete_medias
+            });
         },
     },
     watch: {},
