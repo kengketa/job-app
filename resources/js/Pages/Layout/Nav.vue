@@ -62,7 +62,7 @@
                                 Profile
                             </Link>
                         </li>
-                        <li>
+                        <li v-if="$page.props.role && ($page.props.role==='admin' || $page.props.role==='manager')">
                             <Link :href="route('dashboard.index')" class="justify-between">
                                 Dashboard
                             </Link>

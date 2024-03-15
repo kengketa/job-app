@@ -41,10 +41,11 @@ class HandleInertiaRequests extends Middleware
     {
         $user = null;
         if (Auth::user()) {
-            $user = User::where('id', Auth::user()->id)->first();
+            $user = User::with('role')->where('id', Auth::user()->id)->first();
         }
         return array_merge(parent::share($request), [
             'user' => $user,
+            'role' => $user ? $user->role->name : null,
             'flash' => [
                 'success' => Session::get('success'),
                 'error' => Session::get('error'),
