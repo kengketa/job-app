@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\PasswordReset;
 use App\Jobs\SendForgotPasswordEmail;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -63,4 +64,13 @@ class User extends Authenticatable
     {
         SendForgotPasswordEmail::dispatch($this, $token);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+
+
+
 }
