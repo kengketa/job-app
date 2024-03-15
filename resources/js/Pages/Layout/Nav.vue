@@ -31,7 +31,7 @@
             <div>sdfdsfdsfdsfdsfd</div>
             <div>4dfsdfdsfdsfds</div>
         </div>
-        <div>
+        <div v-if="$page.props.user === null">
             <a :href="route('login')"
                class="px-6 py-1.5 bg-white text-blue-800 rounded-md flex gap-2 items-center font-bold">
                 <div>
@@ -46,13 +46,51 @@
                 <p>เข้าสู่ระบบ</p>
             </a>
         </div>
+        <div v-if="$page.props.user !== null" class="flex gap-2 items-center">
+            <div class="flex-none gap-2 text-gray-500">
+                <div class="dropdown dropdown-end">
+                    <div class="btn btn-ghost btn-circle avatar" role="button" tabindex="0">
+                        <div class="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component"
+                                 src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+                        </div>
+                    </div>
+                    <ul class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                        tabindex="0">
+                        <li>
+                            <Link :href="route('profile.show')" class="justify-between">
+                                Profile
+                            </Link>
+                        </li>
+                        <li>
+                            <Link :href="route('dashboard.index')" class="justify-between">
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li>
+                            <button @click.prevent="logout">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-sm">{{ $page.props.user.name }}</p>
+        </div>
     </section>
 </template>
 <script>
+import {Link} from "@inertiajs/inertia-vue3";
+import {Inertia} from "@inertiajs/inertia";
+
 export default {
     name: "Nav",
+    components: {Link},
     data() {
         return {};
     },
+    methods: {
+        logout() {
+            Inertia.post(this.route('logout'));
+        }
+    }
 };
 </script>
