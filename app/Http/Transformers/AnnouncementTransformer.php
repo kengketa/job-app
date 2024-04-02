@@ -10,7 +10,7 @@ use Phattarachai\ThaiDate\ThaiDate;
 
 class AnnouncementTransformer extends TransformerAbstract
 {
-    protected array $availableIncludes = ['documents'];
+    protected array $availableIncludes = ['documents', 'applicants'];
 
     public function transform(Announcement $announcement): array
     {
@@ -37,5 +37,10 @@ class AnnouncementTransformer extends TransformerAbstract
     {
         $documents = $announcement->getMedia(Announcement::MEDIA_COLLECTION_DOCUMENTS);
         return $this->collection($documents, new AnnouncementDocumentTransformer());
+    }
+
+    public function includeApplicants(Announcement $announcement)
+    {
+        return $this->collection($announcement->applicants, new ApplicantTransformer());
     }
 }
