@@ -58,5 +58,10 @@ class Announcement extends Model implements HasMedia
         $this->addMediaCollection(self::MEDIA_COLLECTION_DOCUMENTS);
     }
 
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class, 'announcement_id');
+    }
+
 
 }

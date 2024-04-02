@@ -13,6 +13,6 @@ class ApplicantSeeder extends Seeder
      */
     public function run(): void
     {
-        Applicant::factory()->count(20)->create();
+        Applicant::factory()->count(60)->create();
     }
 }

@@ -13,7 +13,7 @@ class AnnouncementSeeder extends Seeder
      */
     public function run(): void
     {
-        Announcement::factory()->count(100)->create();
+        Announcement::factory()->count(20)->create();
         $newAnnouncements = Announcement::all();
         foreach ($newAnnouncements as $announcement) {
             $announcement->addMedia(storage_path('seed/sample.pdf'))->preservingOriginal()
