@@ -1,8 +1,9 @@
- <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Dashboard\AnnouncementController;
+use App\Http\Controllers\ApplicantController;
 
 
 Route::middleware(['auth:sanctum', 'role:admin,manager'])->group(function () {
@@ -23,6 +24,10 @@ Route::middleware(['auth:sanctum', 'role:admin,manager'])->group(function () {
             ->name('announcements.update');
         Route::delete('/announcements/{announcement}', [AnnouncementController::class, 'destroy'])
             ->name('announcements.destroy');
+
+        //Applicants
+        Route::get('/applicants/{applicant}', [ApplicantController::class, 'show'])
+            ->name('applicants.show');
     });
 });
 
