@@ -12,16 +12,16 @@
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <th class="px-6 py-3">หมายเลขใบสมัคร</th>
                     <th class="px-6 py-3">ชื่อ</th>
-                    <th class="px-6 py-3">Email</th>
+                    <th class="px-6 py-3">นามสกุล</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(applicant, index) in applicants" :key="index"
+                <tr v-for="(applicant, index) in applicant" :key="index"
                     class="bg-white border-b hover:bg-gray-50">
                     <td class="px-6 py-4">{{ applicant.announcement_id }}</td>
                     <td class="px-6 py-4">{{ applicant.first_name }}</td>
-                    <td class="px-6 py-4">{{ applicant.first_name }}</td>
+                    <td class="px-6 py-4">{{ applicant.last_name }}</td>
 
 
                 </tr>
