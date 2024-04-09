@@ -25,7 +25,12 @@ Route::middleware(['auth:sanctum', 'role:admin,manager'])->group(function () {
         Route::delete('/announcements/{announcement}', [AnnouncementController::class, 'destroy'])
             ->name('announcements.destroy');
 
+
         //Applicants
+        Route::get('/applicants', [ApplicantController::class, 'index'])
+            ->name('applicants.index');
+        Route::get('/applicants/create', [ApplicantController::class, 'create'])
+            ->name('applicants.create');
         Route::get('/applicants/{applicant}', [ApplicantController::class, 'show'])
             ->name('applicants.show');
     });
