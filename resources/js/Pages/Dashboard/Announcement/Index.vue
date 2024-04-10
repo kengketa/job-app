@@ -31,9 +31,9 @@
             </div>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-gray-700 uppercase bg-gray-50 ">
+                <tr class="bg-white border-b">
                     <th class="px-6 py-3">#</th>
                     <th class="px-6 py-3">ประกาศ</th>
                     <th class="px-6 py-3">ตำแหน่งที่รับสมัคร</th>
@@ -47,7 +47,7 @@
                 </thead>
                 <tbody v-if="announcementsData!=null">
                 <tr v-for="(announcement,index) in announcementsData" :key="index"
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    class="bg-white border-b">
                     <!-- <th>{{ index + 1 }}</th> -->
                     <th class="text-center">{{ announcement.id }}</th>
                     <td class="px-6 py-4">
