@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use App\Models\Announcement;
+use App\Models\Applicant;
 use App\Http\Transformers\AnnouncementTransformer;
 
 class AnnouncementController extends Controller

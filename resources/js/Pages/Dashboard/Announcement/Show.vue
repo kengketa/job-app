@@ -24,7 +24,12 @@
                     <td class="px-6 py-4"> {{ applicant.prefix }}{{ applicant.user.name }}</td>
                     <td class="px-6 py-4">{{ applicant.phone }}</td>
                     <td class="px-6 py-4">{{ applicant.user.email }}</td>
-                    <td>sjdhgfd jhdsfg</td>
+                    <td class="px-6 py-4 flex flex-col items-center gap-1">
+                        <Link :href="route('dashboard.applicants.show', { applicant: applicant.id })"
+                              class="btn btn-primary btn-sm w-16">
+                            SHOW
+                        </Link>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -54,7 +59,9 @@ export default {
         allCategories: {
             type: Array,
             required: true
-        }
+        },
+
+
     },
     mounted() {
 
