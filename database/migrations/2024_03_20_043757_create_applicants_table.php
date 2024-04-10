@@ -40,6 +40,11 @@ return new class extends Migration {
             $table->text('achievements')->nullable();       //โปรดระบุความสำเร็จของงานที่ผ่านมาในช่วง 3 ปีหลัง (ถ้ามี)
             $table->text('experience_gained');              //โปรดให้ความเห็นเกี่ยวกับประสบการ์ที่ได้รับ
             $table->text('talent')->nullable();             //ความสามารถพิเศษ (ถ้ามี)
+
+            $table->json('trainings')->nullable();
+            $table->json('experiences')->nullable();
+            $table->json('references')->nullable();
+
 //
 //            $table->string('education_and_training_year');  //ข้อมูลการศึกษาและฝึกฝึกอบรม ปี พ.ศ. จาก - ถึง
 //            $table->string('school_name');                  //สถานศึกษา

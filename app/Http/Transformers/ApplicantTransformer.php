@@ -43,6 +43,9 @@ class ApplicantTransformer extends TransformerAbstract
             'achievements' => $applicant->achievements,
             'experience_gained' => $applicant->experience_gained,
             'talent' => $applicant->talent,
+            'trainings' => $applicant->trainings,
+            'experiences' => $applicant->experiences,
+            'references' => $applicant->references
         ];
         return $data;
     }

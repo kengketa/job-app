@@ -49,6 +49,54 @@ class ApplicantFactory extends Factory
             'achievements' => $this->faker->text,
             'experience_gained' => $this->faker->text,
             'talent' => $this->faker->text,
+            'trainings' => [
+                [
+                    'from' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'to' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'school' => $this->faker->company,
+                    'degree' => $this->faker->randomElement(['Bachelor', 'Master', 'PhD']),
+                    'grade' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 4),
+                ],
+                [
+                    'from' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'to' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'school' => $this->faker->company,
+                    'degree' => $this->faker->randomElement(['Bachelor', 'Master', 'PhD']),
+                    'grade' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 4),
+                ],
+            ],
+            'experiences' => [
+                [
+                    'from' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'to' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'company' => $this->faker->company,
+                    'position' => $this->faker->jobTitle,
+                    'salary' => $this->faker->randomNumber(5),
+                    'leave_reason' => $this->faker->sentence,
+                ],
+                [
+                    'from' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'to' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                    'company' => $this->faker->company,
+                    'position' => $this->faker->jobTitle,
+                    'salary' => $this->faker->randomNumber(5),
+                    'leave_reason' => $this->faker->sentence,
+                ],
+            ],
+            'references' => [
+                [
+                    'full_name' => $this->faker->name,
+                    'position' => $this->faker->jobTitle,
+                    'company' => $this->faker->company,
+                    'relationship' => $this->faker->randomElement(['Manager', 'Colleague', 'Supervisor', 'Friend']),
+                ],
+                [
+                    'full_name' => $this->faker->name,
+                    'position' => $this->faker->jobTitle,
+                    'company' => $this->faker->company,
+                    'relationship' => $this->faker->randomElement(['Manager', 'Colleague', 'Supervisor', 'Friend']),
+                ]
+            ]
         ];
     }
 }

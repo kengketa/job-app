@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Transformers\ApplicantTransformer;
 use App\Models\Applicant;
 use App\Models\AnnouncementCategory;
 use App\Models\AnnouncementType;
@@ -32,11 +33,10 @@ class ApplicantController extends Controller
     {
         //dd($applicant);
         //$applicant = Applicant::find($applicant);
-
+        $applicantData = fractal($applicant, new ApplicantTransformer())->toArray();
         return Inertia::render('Dashboard/Applicant/Show', [
-            'applicant' => $applicant,
+            'applicant' => $applicantData,
         ]);
-
     }
 
 }

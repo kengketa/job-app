@@ -45,6 +45,9 @@ class Applicant extends Model
         'achievements',
         'experience_gained',
         'talent',
+        'trainings',
+        'experiences',
+        'references'
     ];
     protected $casts = [
         'user_id' => 'integer',
@@ -53,6 +56,9 @@ class Applicant extends Model
         'age' => 'integer',
         'card_issued_date' => 'date',
         'card_expiration_date' => 'date',
+        'trainings' => 'json',
+        'experiences' => 'json',
+        'references' => 'json'
     ];
 
 
