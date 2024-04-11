@@ -9,7 +9,7 @@
 
         <!-- 1.ข้อมูลส่วนตัว -->
         <div>
-            <h6 class="text-lg">1.ข้อมูลส่วนตัว</h6>
+            <h6 class="text-md">1.ข้อมูลส่วนตัว</h6>
         </div>
 
         <div class="border-b border-gray-900/10 pb-12">
@@ -225,11 +225,11 @@
 
         <!-- 2. ข้อมูลการศึกษาและฝึกอบรม -->
         <div class="mt-4">
-            <h6 class="text-lg">2. ข้อมูลการศึกษาและฝึกอบรม</h6>
+            <h6 class="text-md">2. ข้อมูลการศึกษาและฝึกอบรม</h6>
         </div>
 
         <section class="container mx-auto p-6 font-mono">
-            <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+            <div class="w-full overflow-hidden rounded-lg shadow-lg">
                 <div class="w-full overflow-x-auto">
                     <table class="w-full border-collapse border border-slate-400">
                         <thead class="border-b border-gray-600">
@@ -270,10 +270,10 @@
                 <div>
                     <!-- <h6 class="text-lg text-center">หลักสูตรเพิ่มเติม</h6> -->
                     <div
-                        class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
+                        class="relative flex flex-col  text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
 
                         <div class="p-6">
-                            <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                            <h5 class="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                                 หลักสูตรเพิ่มเติม
                             </h5>
                             <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
@@ -287,9 +287,9 @@
                 </div>
                 <div>
                     <div
-                        class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
+                        class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
                         <div class="p-6">
-                            <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                            <h5 class="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                                 การฝึกอบรม
                             </h5>
                             <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
@@ -302,8 +302,8 @@
         </section>
 
         <!-- 3. ข้อมูลการทำงานและประสบการณ์ทำงาน (โปรดให้รายละเอียดของงานที่ทำในช่วง 3 ปีหลัง) -->
-        <div class="mt-4">
-            <h6 class="text-lg">3. ข้อมูลการทำงานและประสบการณ์ทำงาน (โปรดให้รายละเอียดของงานที่ทำในช่วง 3 ปีหลัง)</h6>
+        <div>
+            <h6 class="text-md">3. ข้อมูลการทำงานและประสบการณ์ทำงาน (โปรดให้รายละเอียดของงานที่ทำในช่วง 3 ปีหลัง)</h6>
         </div>
         <section class="container mx-auto p-6 font-mono">
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
@@ -351,11 +351,11 @@
         <section class="container mx-auto p-6 font-mono">
             <div>
                 <div
-                    class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
+                    class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
                     <div class="p-6">
-                        <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        <h6 class="block  font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                             โปรดระบุความสำเร็จของงานที่ทำผ่านมาในช่วง 3 ปีหลัง (ถ้ามี)
-                        </h5>
+                        </h6>
                         <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                             {{ applicant.achievements }}
                         </p>
@@ -368,12 +368,12 @@
         <section class="container mx-auto p-6 font-mono">
             <div>
                 <div
-                    class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
+                    class="relative flex flex-col  text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
                     <div class="p-6">
-                        <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        <h6 class="block font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                             โปรดให้ความคิดเห็นเกี่ยวกับประสบการณ์ที่ได้รับ และอธิบายว่าประสบการณ์นั้น ๆ
                             เป็นประโยชน์ต่องานที่สมัครในครั้งนี้
-                        </h5>
+                        </h6>
                         <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                             {{ applicant.experience_gained }}
                         </p>
@@ -383,14 +383,14 @@
         </section>
 
         <!-- 4. ข้อมูลความรู้ความสามารถพิเศษ (ถ้ามี) -->
-        <section class="container mx-auto p-6 font-mono">
+        <section class="container mx-auto mb-4 p-6 font-mono">
             <div>
                 <div
-                    class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
+                    class="relative flex flex-col  text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-100">
                     <div class="p-6">
-                        <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        <h6 class="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                             ข้อมูลความรู้ความสามารถพิเศษ (ถ้ามี)
-                        </h5>
+                        </h6>
                         <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                             {{ applicant.talent }}
                         </p>
@@ -400,12 +400,12 @@
         </section>
 
         <!-- 5. บุคคลอ้างอิง (ขอให้ระบุชื่อบุคคลที่คุ้นเคยกับการทำงานของท่าน เช่น ผู้บังคับบัญชาโดยตรง โปรดอย่าระบุชื่อบุคคลที่เป็นญาติและเพื่อน) -->
-        <div class="mt-4">
-            <h6 class="text-lg">5. บุคคลอ้างอิง (ขอให้ระบุชื่อบุคคลที่คุ้นเคยกับการทำงานของท่าน เช่น
+        <div>
+            <h6 class="text-md">5. บุคคลอ้างอิง (ขอให้ระบุชื่อบุคคลที่คุ้นเคยกับการทำงานของท่าน เช่น
                 ผู้บังคับบัญชาโดยตรง โปรดอย่าระบุชื่อบุคคลที่เป็นญาติและเพื่อน)</h6>
         </div>
         <section class="container mx-auto p-6 font-mono">
-            <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+            <div class="w-full mb-5 overflow-hidden rounded-lg shadow-lg">
                 <div class="w-full overflow-x-auto">
                     <table class="w-full border-collapse border border-slate-400">
                         <thead class="border-b border-gray-600">
@@ -434,6 +434,80 @@
                 </div>
             </div>
         </section>
+
+        <!-- ข้อ 6  -->
+        <div>
+            <h6 class="text-md">6. ข้าพเจ้ามีคุณสมบัติครบถ้วนตามที่ระบุไว้ในข้อ 7 แห่งข้อบังคับมหาวิทยาลัยราชภัฏพระนครศรีอยุธยา ว่าด้วย การบริหารงานบุคคลสำหรับพนักงานมหาวิทยาลัย พ.ศ.2562</h6>
+            <h6 class="text-md pl-16">ขอรับรองว่าข้อความที่กล่าวข้างต้นเป็นความจริงทุกประการ หากข้อความตอนใดเป็นความเท็จหรือไม่ ตรงกับความจริงให้ถือเป็นหลักฐานเพื่อเลิกจ้างข้าพเจ้าได้ทันที</h6>
+        </div>
+        <div>
+            <div class="text-center mt-6">
+                <p class="mr-6">ลงชื่อ.............................................ผู้สมัคร</p>
+            </div>
+            <div class="text-center mt-2">
+                <p class="mr-6">(.............................................)</p>
+            </div>
+            <div class="text-center mt-2">
+                <p class="mr-6">ยื่นใบสมัครวันที่..............เดือน..............พ.ศ.................ผู้สมัคร</p>
+            </div>
+        </div>
+
+         <!-- เฉพาะเจ้าหน้าที่มหาวิทยาลัย  -->
+        <div class="mt-6">
+            <h6 class="text-md text-md inline-block border-b border-gray-500">เฉพาะเจ้าหน้าที่มหาวิทยาลัย</h6>
+        </div>
+
+        <div class="w-full mb-5 overflow-hidden rounded-lg shadow-lg mt-4">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full border-collapse border border-slate-400 ...">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-3 border-collapse border border-slate-400 text-left">งานทรัพยากรบุคคล</th>
+                            <th class="px-4 py-3 border-collapse border border-slate-400 text-left">งานการเงิน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border-collapse border border-slate-400 px-4">ได้ตรวจสอบหลักฐานการสมัครเบื้องต้น ครบถ้วน สมบูรณ์แล้ว 
+                                <span>
+                                    <div class="mb-8">
+                                        <div class="text-center mt-6">
+                                            <p class="mr-6">ลงชื่อ.............................................ผู้สมัคร</p>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <p class="mr-6">(.............................................)</p>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <p class="mr-6">ยื่นใบสมัครวันที่..............เดือน..............พ.ศ.................ผู้รับสมัคร</p>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td class="border-collapse border border-slate-400 px-4">ได้รับค่าธรรมเนียมสอบเป็นเงิน 200 บาท เป็นที่เรียบร้อยแล้ว 
+                                <span><br>ตามใบเสร็จเลขที่.................................</span> 
+                                <span>
+                                    <div class="mb-8">
+                                        <div class="text-center mt-6">
+                                            <p class="mr-6">ลงชื่อ.............................................ผู้รับเงิน</p>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <p class="mr-6">(.............................................)</p>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <p class="mr-6">ยื่นใบสมัครวันที่..............เดือน..............พ.ศ.................ผู้สมัคร</p>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                        <!-- ข้อมูลอื่นๆ ที่ต้องการเพิ่มเข้าไป -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+   
+
 
 
     </Layout>

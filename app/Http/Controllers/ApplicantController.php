@@ -15,6 +15,11 @@ use App\Http\Transformers\AnnouncementTransformer;
 
 class ApplicantController extends Controller
 {
+    public function index(Request $request)
+    {
+        
+        return Inertia::render('Dashboard/Applicant/Index');
+    }
     // public function index(Request $request)
     // {
     //     $filters = $request->only(['category_id', 'type_id']);
